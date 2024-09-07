@@ -20,14 +20,12 @@ export class RegisterComponent {
   user = signal<User | undefined>(undefined);
 
   ngOnInit() {
-    console.log(this.userId());
     if (this.userId()) {
       const subscription = this.userService
         .getUserById(+this.userId())
         .subscribe({
           next: (data) => {
             this.user.set(data);
-            console.log(this.user());
           },
         });
       this.destroyRef.onDestroy(() => subscription.unsubscribe());

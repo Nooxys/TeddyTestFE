@@ -76,7 +76,6 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.user());
     if (this.user()) {
       this.form.controls.name.setValue(this.user()!.name);
       this.form.controls.surname.setValue(this.user()!.surname);
@@ -92,10 +91,8 @@ export class FormComponent implements OnInit, OnChanges {
   // Submit per la post dell'user
   onSubmit() {
     if (this.form.invalid) {
-      console.log(this.form);
       return;
     }
-    console.log(this.form);
 
     // utilizzo  as userbody ( quindi lo casto) perchè la value del form viene interpretata come partial
     // update come reminder: è la stessa cosa di tipizzarlo ---> <UserBody>this.form.value
@@ -115,9 +112,8 @@ export class FormComponent implements OnInit, OnChanges {
           });
         },
         error: (e) => {
-          console.log(e);
           this.error.set(e.error.message);
-          console.log(this.error());
+
           Swal.fire({
             title: 'Attenzione!',
             text: this.error(),
@@ -134,8 +130,6 @@ export class FormComponent implements OnInit, OnChanges {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form);
-    console.log(this.user());
 
     const subscription = this.userService
       .updateUser(this.user()!.id, this.form.value as UserBody)
@@ -152,9 +146,8 @@ export class FormComponent implements OnInit, OnChanges {
           });
         },
         error: (e) => {
-          console.log(e);
           this.error.set("Ci sono problemi con la modifica dell'utente.");
-          console.log(this.error());
+
           Swal.fire({
             title: 'Attenzione!',
             text: this.error(),

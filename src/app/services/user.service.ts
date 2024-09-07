@@ -44,7 +44,6 @@ export class UserService {
 
   // upgrade utente per id
   updateUser(userId: number, userBody: UserBody) {
-    console.log(userId);
     return this.httpClient
       .put<User>(`${this.fetchUrl}/${userId}`, userBody)
       .pipe(
@@ -58,7 +57,6 @@ export class UserService {
 
   // delete utente per id
   deleteUser(userId: number) {
-    console.log(this.users());
     return this.httpClient
       .delete(`${this.fetchUrl}/${userId}`)
       .pipe(

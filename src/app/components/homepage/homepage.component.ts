@@ -44,19 +44,13 @@ export class HomepageComponent implements OnInit {
   filterValue = signal<string>('');
 
   ngOnInit() {
-    console.log(this.filterBy());
-    console.log(this.filterValue());
     this.isLoading.set(true);
     const subscription = this.userService.getAllUsers().subscribe({
       next: (resData) => {
         this.originalUsers.set(resData);
-
-        console.log(this.users());
       },
       error: (e) => {
-        console.log(e);
         this.error.set('Ci sono problemi con la richiesta. Riprova più tardi!');
-        console.log(this.error());
       },
       complete: () => this.isLoading.set(false),
     });
@@ -64,7 +58,6 @@ export class HomepageComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       if (params['highlight']) {
         this.highlightedUser.set(params['highlight']);
-        console.log('da highlight ' + this.highlightedUser());
         setTimeout(() => this.scrollToHighlightedUser(), 1000);
       }
     });
@@ -113,7 +106,6 @@ export class HomepageComponent implements OnInit {
     if (currentSortBy && currentSortOrder !== 'none') {
       result = [...result].sort((a, b) => {
         const compareResult = a[currentSortBy].localeCompare(b[currentSortBy]);
-        console.log(result);
         return currentSortOrder === 'asc' ? compareResult : -compareResult;
       });
     }
