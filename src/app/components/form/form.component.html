@@ -1,0 +1,145 @@
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-10 col-lg-6">
+      <p class="mt-5 mb-2">
+        • I campi contrassegnati *
+        <span class="text-danger fst-italic">sono obbligatori</span>
+      </p>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="!user() ? onSubmit() : onSubmitUpdate()"
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Nome *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Nome utente"
+            [formControl]="form.controls.name"
+          />
+        </div>
+        @if (inputIsInvalid('name')) {
+        <p class="text-danger">
+          Il nome è obbligatorio, con una lunghezza tra 2 e 20 lettere.
+        </p>
+        }
+        <div class="mb-3">
+          <label for="surname" class="form-label">Cognome *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="surname"
+            placeholder="Cognome utente"
+            [formControl]="form.controls.surname"
+          />
+        </div>
+        @if (inputIsInvalid('surname')) {
+        <p class="text-danger">
+          Il cognome è obbligatorio, con una lunghezza tra 2 e 20 lettere.
+        </p>
+        }
+        <fieldset>
+          <div class="mb-3">
+            <label for="address" class="form-label">Indirizzo </label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              placeholder="Indirizzo utente"
+              [formControl]="form.controls.address"
+            />
+          </div>
+          @if (inputIsInvalid('address')) {
+          <p class="text-danger">L'indirizzo deve essere tra 5 e 75 lettere!</p>
+          }
+          <div class="mb-3">
+            <label for="location" class="form-label">Località </label>
+            <input
+              type="text"
+              class="form-control"
+              id="location"
+              placeholder="Località utente"
+              [formControl]="form.controls.location"
+            />
+          </div>
+          @if (inputIsInvalid('location')) {
+          <p class="text-danger">La località deve essere tra 3 e 25 lettere!</p>
+          }
+          <div class="mb-3">
+            <label for="municipality" class="form-label">Comune </label>
+            <input
+              type="text"
+              class="form-control"
+              id="municipality"
+              placeholder="Comune utente"
+              [formControl]="form.controls.municipality"
+            />
+          </div>
+          @if (inputIsInvalid('municipality')) {
+          <p class="text-danger">Il comune deve essere tra 3 e 25 lettere!</p>
+          }
+          <div class="mb-3">
+            <label for="province" class="form-label">Provincia </label>
+            <input
+              type="text"
+              class="form-control"
+              id="province"
+              placeholder="Provincia utente"
+              [formControl]="form.controls.province"
+            />
+          </div>
+        </fieldset>
+
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label"
+            >Indirizzo Email *
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="test@test.com"
+            [formControl]="form.controls.email"
+          />
+        </div>
+        @if (inputIsInvalid('email')) {
+        <p class="text-danger">inserisci un indirizzo email valido!</p>
+        }
+
+        <div class="mb-3">
+          <label for="notes" class="form-label">Note</label>
+          <textarea
+            class="form-control"
+            id="notes"
+            rows="3"
+            [formControl]="form.controls.notes"
+          ></textarea>
+        </div>
+        @if (inputIsInvalid('notes')) {
+        <p class="text-danger">
+          Le note devono avere un massimo di 300 caratteri!
+        </p>
+        }
+        <div class="row text-end">
+          <div class="col">
+            <button
+              class="btn btn-default me-2"
+              type="submit"
+              [disabled]="form.invalid"
+            >
+              @if(user()){Aggiorna!} @else {Invia!}
+            </button>
+            <button
+              class="btn btn-default btn-reset"
+              (click)="onReset()"
+              type="reset"
+            >
+              Reset!
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

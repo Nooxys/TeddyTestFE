@@ -1,0 +1,15 @@
+<h1 class="text-center mt-5 mb-3">
+  @if(!user()) {Registra} @else {Modifica} un Utente
+</h1>
+<h5 class="text-center mb-2">Inserisci i dati dell'utente nel form.</h5>
+<p class="text-center">
+  oppure
+  <a
+    [routerLink]="['/homepage']"
+    class="link-underline link-underline-opacity-0 link-success fw-semibold ms-1"
+  >
+    TORNA IN HOMEPAGE ￫</a
+  >
+</p>
+
+<app-form [user]="user()"></app-form>

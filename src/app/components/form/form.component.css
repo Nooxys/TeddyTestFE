@@ -1,0 +1,31 @@
+form {
+  padding: 2rem;
+  background: linear-gradient(180deg, #253c3c, #1d4949);
+  border-radius: 8px;
+  box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+  background-color: #3085d6;
+  border-color: black;
+  color: white;
+}
+
+.btn:hover,
+.btn:active {
+  outline: none;
+  background-color: rgb(16, 99, 177);
+  border-color: black;
+}
+
+.btn-reset {
+  background-color: rgb(235, 44, 10);
+  border-color: black;
+}
+
+.btn-reset:hover,
+.btn-reset:active {
+  outline: none;
+  background-color: rgb(182, 6, 6);
+  border-color: black;
+}

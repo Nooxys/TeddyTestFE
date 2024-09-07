@@ -1,0 +1,41 @@
+th {
+  background: linear-gradient(180deg, #356464, #1d4949);
+  color: white;
+  border-bottom: solid rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+td {
+  font-weight: 600;
+}
+
+td:hover {
+  color: rgb(6, 170, 143);
+}
+
+table {
+  border: solid 2px black;
+}
+.btn {
+  background-color: #3085d6;
+  border-color: black;
+}
+
+.btn:hover,
+.btn:active {
+  outline: none;
+  background-color: rgb(16, 99, 177);
+  border-color: black;
+}
+
+.btn-del {
+  background-color: rgb(235, 44, 10);
+  border-color: black;
+}
+
+.btn-del:hover,
+.btn-del:active {
+  outline: none;
+  background-color: rgb(182, 6, 6);
+  border-color: black;
+}

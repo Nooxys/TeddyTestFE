@@ -1,0 +1,139 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-4 col-md-3 col-lg-2 mb-3 mb-md-0 mt-1">
+      <select
+        class="form-select"
+        aria-label="filter select"
+        [ngModel]="filterBy()"
+        (ngModelChange)="filterBy.set($event)"
+      >
+        <option selected>Filtra</option>
+        <option value="name">Nome</option>
+        <option value="surname">Cognome</option>
+        <option value="email">Email</option>
+        <option value="municipality">Comune</option>
+      </select>
+    </div>
+
+    <div class="col-sm-4 col-md-3 col-lg-2">
+      <input
+        type="text"
+        placeholder="filtra utenti..."
+        class="flex-grow border rounded p-2 rounded-0 border-success-subtle border-3"
+        [ngModel]="filterValue()"
+        (ngModelChange)="filterValue.set($event)"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container my-5 table-responsive">
+  <div class="row justify-content-center">
+    <div class="col">
+      <p class="opacity-75 fs-6 mb-1 fst-italic ms-1">
+        • Premi sulla colonna desiderata per ordinarla
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-2" (click)="onSort('name')">
+              Nome
+              <span>
+                @if(sortBy() === 'name' ){ @if(sortOrder() === 'none') {} @if
+                (sortOrder() === 'asc') {🠹} @else {🠻} }
+              </span>
+            </th>
+            <th scope="col" class="col-2" (click)="onSort('surname')">
+              Cognome
+              <span>
+                @if(sortBy() === 'surname' ){ @if(sortOrder() === 'none') {} @if
+                (sortOrder() === 'asc') {🠹} @else {🠻} }
+              </span>
+            </th>
+            <th scope="col" class="col-2" (click)="onSort('municipality')">
+              Comune
+              <span>
+                @if(sortBy() === 'municipality' ){ @if(sortOrder() === 'none')
+                {} @if (sortOrder() === 'asc') {🠹} @else {🠻} }
+              </span>
+            </th>
+            <th scope="col" class="col-2" (click)="onSort('email')">
+              Email
+              <span>
+                @if(sortBy() === 'email' ){ @if(sortOrder() === 'none') {} @if
+                (sortOrder() === 'asc') {🠹} @else {🠻} }
+              </span>
+            </th>
+            <th scope="col" class="col-1"></th>
+            <th scope="col" class="col-1"></th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          @for(user of sortedAndFilteredUsers(); track user.id ) {
+
+          <tr
+            [id]="user.email"
+            [class.table-success]="user.email === highlightedUser()"
+            (click)="onRemoveHighlight()"
+          >
+            <td scope="col" class="align-content-center">
+              {{
+                user.name.charAt(0).toUpperCase() +
+                  user.name.slice(1).toLowerCase()
+              }}
+            </td>
+            <td scope="col" class="align-content-center">
+              {{
+                user.surname.charAt(0).toUpperCase() +
+                  user.surname.slice(1).toLowerCase()
+              }}
+            </td>
+            <td scope="col" class="align-content-center">
+              {{
+                user.municipality.charAt(0).toUpperCase() +
+                  user.municipality.slice(1).toLowerCase()
+              }}
+            </td>
+            <td scope="col" class="align-content-center">
+              {{ user.email }}
+            </td>
+            <td scope="col" class="">
+              <a [routerLink]="['/register', user.id]">
+                <button class="btn btn-primary">Modifica</button></a
+              >
+            </td>
+            <td scope="col" class="">
+              <button
+                class="btn btn-primary btn-del"
+                (click)="onDeleteAlert(user.id)"
+              >
+                Elimina
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      @if (error()) {
+      <h4 class="text-center text-danger fw-semibold mt-4">{{ error() }}</h4>
+      } @if (isLoading() && !error()) {
+      <div class="row justify-content-center">
+        <div
+          class="spinner-border text-success justify-content-center col-6 my-3"
+          role="status"
+        ></div>
+      </div>
+
+      }
+    </div>
+    <div class="row justify-content-between mb-5">
+      <div class="col-10">
+        @if(!error() && !isLoading()) {
+        <a [routerLink]="['/register']">
+          <button class="btn btn-primary">Nuova anagrafica</button></a
+        >
+        }
+      </div>
+    </div>
+  </div>
+</div>
