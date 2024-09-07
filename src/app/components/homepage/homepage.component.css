@@ -39,3 +39,7 @@ table {
   background-color: rgb(182, 6, 6);
   border-color: black;
 }
+
+.empty {
+  background-color: white;
+}
