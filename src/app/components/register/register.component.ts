@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, input, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FormComponent } from '../form/form.component';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.interface';
@@ -11,7 +18,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   private userService = inject(UserService);
   private destroyRef = inject(DestroyRef);
 

@@ -25,7 +25,7 @@ import Swal from 'sweetalert2';
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
-export class FormComponent implements OnInit, OnChanges {
+export class FormComponent implements OnChanges {
   // injectors
   private router = inject(Router);
   private userService = inject(UserService);
@@ -70,10 +70,6 @@ export class FormComponent implements OnInit, OnChanges {
       validators: [Validators.maxLength(300)],
     }),
   });
-
-  ngOnInit() {
-    console.log(this.user());
-  }
 
   ngOnChanges() {
     if (this.user()) {
